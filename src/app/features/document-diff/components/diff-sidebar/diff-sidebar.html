@@ -1,0 +1,11 @@
+@if (diffs().length === 0) {
+  <p class="diff-sidebar__empty">No differences match the current filters.</p>
+}
+
+@for (diff of diffs(); track diff.id) {
+  <app-diff-card
+    [diff]="diff"
+    [isActive]="diff.id === activeDiffId()"
+    (clicked)="diffSelected.emit(diff)"
+  />
+}

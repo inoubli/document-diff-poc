@@ -1,0 +1,66 @@
+:host {
+  display: block;
+}
+
+.diff-card {
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  border: 1px solid var(--mat-sys-outline-variant);
+  background-color: var(--mat-sys-surface-container);
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+
+  &:hover {
+    background-color: var(--mat-sys-surface-container-high);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--mat-sys-primary);
+    outline-offset: 2px;
+  }
+
+  &--active {
+    border-color: var(--mat-sys-primary);
+    background-color: color-mix(in srgb, var(--mat-sys-primary) 8%, var(--mat-sys-surface));
+  }
+
+  &[data-status='added'] .diff-card__badge {
+    background-color: #d4edda;
+    color: #2e7d32;
+  }
+
+  &[data-status='deleted'] .diff-card__badge {
+    background-color: #fde8e8;
+    color: #c62828;
+  }
+
+  &[data-status='modified'] .diff-card__badge {
+    background-color: #fff3cd;
+    color: #e65100;
+  }
+}
+
+.diff-card__badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 4px;
+}
+
+.diff-card__label {
+  margin: 4px 0 2px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--mat-sys-on-surface);
+}
+
+.diff-card__type {
+  font-size: 0.75rem;
+  color: var(--mat-sys-on-surface-variant);
+}

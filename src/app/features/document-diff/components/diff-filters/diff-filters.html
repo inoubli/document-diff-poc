@@ -1,0 +1,10 @@
+<mat-button-toggle-group
+  multiple
+  [value]="activeFiltersArray()"
+  (change)="onFilterChange($event)"
+  aria-label="Filter differences by status"
+>
+  <mat-button-toggle value="added" class="filter-toggle--added">Added</mat-button-toggle>
+  <mat-button-toggle value="deleted" class="filter-toggle--deleted">Deleted</mat-button-toggle>
+  <mat-button-toggle value="modified" class="filter-toggle--modified">Modified</mat-button-toggle>
+</mat-button-toggle-group>

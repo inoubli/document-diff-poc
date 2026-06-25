@@ -1,0 +1,75 @@
+.document-html-viewer {
+  display: block;
+}
+
+.doc-content {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--mat-sys-on-surface);
+
+  h1, h2, h3, h4, h5, h6 {
+    margin: 0 0 0.75rem;
+    font-weight: 600;
+    color: var(--mat-sys-on-surface);
+  }
+
+  p {
+    margin: 0 0 0.75rem;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 0 1rem;
+    font-size: 0.875rem;
+
+    th, td {
+      padding: 8px 12px;
+      border: 1px solid var(--mat-sys-outline-variant);
+      text-align: left;
+    }
+
+    th {
+      background-color: var(--mat-sys-surface-container);
+      font-weight: 600;
+    }
+
+    tr:nth-child(even) td {
+      background-color: var(--mat-sys-surface-container-low);
+    }
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0.75rem 0;
+  }
+
+  // --- Highlight classes applied by DocumentHighlightService ---
+
+  .diff-added {
+    background-color: #d4edda;
+    border-radius: 2px;
+    outline: 1px solid #a3d9a5;
+  }
+
+  .diff-deleted {
+    background-color: #fde8e8;
+    border-radius: 2px;
+    outline: 1px solid #f5a5a5;
+    text-decoration: line-through;
+  }
+
+  .diff-modified {
+    background-color: #fff3cd;
+    border-radius: 2px;
+    outline: 1px solid #ffc966;
+  }
+
+  .diff-active {
+    outline: 2px solid var(--mat-sys-primary) !important;
+    outline-offset: 2px;
+    background-color: color-mix(in srgb, var(--mat-sys-primary) 10%, transparent) !important;
+  }
+}

@@ -1,0 +1,18 @@
+:host {
+  display: block;
+}
+
+.filter-toggle--added.mat-button-toggle-checked {
+  background-color: #d4edda;
+  color: #2e7d32;
+}
+
+.filter-toggle--deleted.mat-button-toggle-checked {
+  background-color: #fde8e8;
+  color: #c62828;
+}
+
+.filter-toggle--modified.mat-button-toggle-checked {
+  background-color: #fff3cd;
+  color: #e65100;
+}

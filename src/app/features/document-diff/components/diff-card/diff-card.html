@@ -1,0 +1,14 @@
+<div
+  class="diff-card"
+  [class.diff-card--active]="isActive()"
+  [attr.data-status]="diff().status"
+  (click)="clicked.emit()"
+  role="button"
+  tabindex="0"
+  (keydown.enter)="clicked.emit()"
+  (keydown.space)="clicked.emit()"
+>
+  <span class="diff-card__badge">{{ diff().status }}</span>
+  <p class="diff-card__label">{{ diff().label }}</p>
+  <span class="diff-card__type">{{ diff().targetType }}</span>
+</div>

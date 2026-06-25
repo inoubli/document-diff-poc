@@ -1,0 +1,48 @@
+<mat-toolbar color="primary">
+  <mat-icon>difference</mat-icon>
+  <span>Document Diff Viewer</span>
+</mat-toolbar>
+
+<div class="page-layout">
+  <div class="filters-bar">
+    <span class="filters-label">Filters</span>
+    <app-diff-filters [(activeFilters)]="activeFilters" />
+  </div>
+
+  <div class="content-area">
+    <div class="viewer-panel">
+      <div class="panel-header">Original</div>
+      <div class="panel-body">
+        <app-document-html-viewer
+          [html]="diffResponse().leftHtml"
+          [diffs]="filteredDiffs()"
+          side="left"
+          [activeDiffId]="activeDiff()?.id ?? null"
+        />
+      </div>
+    </div>
+
+    <div class="viewer-panel">
+      <div class="panel-header">Modified</div>
+      <div class="panel-body">
+        <app-document-html-viewer
+          [html]="diffResponse().rightHtml"
+          [diffs]="filteredDiffs()"
+          side="right"
+          [activeDiffId]="activeDiff()?.id ?? null"
+        />
+      </div>
+    </div>
+
+    <div class="sidebar-panel">
+      <div class="panel-header">Differences ({{ filteredDiffs().length }})</div>
+      <div class="panel-body">
+        <app-diff-sidebar
+          [diffs]="filteredDiffs()"
+          [activeDiffId]="activeDiff()?.id ?? null"
+          (diffSelected)="activeDiff.set($event)"
+        />
+      </div>
+    </div>
+  </div>
+</div>
