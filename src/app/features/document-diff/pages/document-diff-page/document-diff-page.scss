@@ -30,7 +30,7 @@ mat-toolbar {
   display: flex;
   flex-direction: column;
   border-right: 1px solid var(--mat-sys-outline-variant);
-
+  height: 700px;
   &:last-child {
     border-right: none;
   }

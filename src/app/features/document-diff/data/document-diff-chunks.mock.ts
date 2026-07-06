@@ -93,10 +93,9 @@ export const MOCK_DOCUMENT_DIFF_CHUNKS = {
     },
   ],
 
-  chunks_v1: "[\n{\n\"id\": 0,\n\"position_order\": 3,\n\"paragraph_id\": 2,\n\"sentence_id\": 1,\n\"page\": null,\n\"type\": \"text\",\n\"text\": \"L'Impact de l'Intelligence Artificielle sur l'Avenir du Travail (Texte Original)\"\n},\n]",
+  chunks_v1:
+    "[\n{\n\"id\": 0,\n\"position_order\": 3,\n\"paragraph_id\": 2,\n\"sentence_id\": 1,\n\"page\": null,\n\"type\": \"text\",\n\"text\": \"L'Impact de l'Intelligence Artificielle sur l'Avenir du Travail (Texte Original)\"\n},\n{\n\"position_order\": 1,\n\"title\": \"First table\",\n\"type\": \"table\",\n\"rows\": [\n[\n{\"cell_id\": 0,\"text\": \"TEST\",\"row\": 0,\"col\": 0},{\"cell_id\": 1,\"text\": \"TEST\",\"row\": 0,\"col\": 1},{\"cell_id\": 2,\"text\": \"TEST\",\"row\": 0,\"col\": 2},{\"cell_id\": 3,\"text\": \"TEST\",\"row\": 0,\"col\": 3}\n]\n]\n},\n]",
 
-  chunks_v2:  "[\n{\n\"id\": 0,\n\"position_order\": 4,\n\"paragraph_id\": 3,\n\"sentence_id\": 1,\n\"page\": null,\n\"type\": \"text\",\n\"text\": \"L'Impact de l'Intelligence Artificielle sur l'Avenir du Travail (Texte Réécrit et Modifié)\"\n},\n]",
+  chunks_v2:
+    "[\n{\n\"id\": 0,\n\"position_order\": 4,\n\"paragraph_id\": 3,\n\"sentence_id\": 1,\n\"page\": null,\n\"type\": \"text\",\n\"text\": \"L'Impact de l'Intelligence Artificielle sur l'Avenir du Travail (Texte Réécrit et Modifié)\"\n},\n{\n\"position_order\": 1,\n\"title\": \"First table\",\n\"type\": \"table\",\n\"rows\": [\n[\n{\"cell_id\": 0,\"text\": \"➜ TABLEAU N°72 : VALEUR EXPOSÉE AU RISQUE DE CONTREPARTIE BILATÉRAL EN APPROCHE IRB (EU CCR4)\",\"row\": 0,\"col\": 0},{\"cell_id\": 1,\"text\": \"➜ TABLEAU N°72 : VALEUR EXPOSÉE AU RISQUE DE CONTREPARTIE BILATÉRAL EN APPROCHE IRB (EU CCR4)\",\"row\": 0,\"col\": 1},{\"cell_id\": 2,\"text\": \"➜ TABLEAU N°72 : VALEUR EXPOSÉE AU RISQUE DE CONTREPARTIE BILATÉRAL EN APPROCHE IRB (EU CCR4)\",\"row\": 0,\"col\": 2},{\"cell_id\": 3,\"text\": \"➜ TABLEAU N°72 : VALEUR EXPOSÉE AU RISQUE DE CONTREPARTIE BILATÉRAL EN APPROCHE IRB (EU CCR4)\",\"row\": 0,\"col\": 3}\n]\n]\n},\n]",
 } as const;
-
-
-

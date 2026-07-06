@@ -28,13 +28,14 @@ export interface DocumentDiffChunksResponse {
   text_result: ReadonlyArray<TextDiffChunk>;
   /** Each entry is a map of row_N keys to cell diffs for one table. */
   table_result: ReadonlyArray<Record<string, TableCellDiff>>;
-  /** JSON-encoded array of TextChunk — full document v1 content. */
+  /** JSON-encoded array of DocumentChunk — full document v1 content. */
   chunks_v1: string;
-  /** JSON-encoded array of TextChunk — full document v2 content. */
+  /** JSON-encoded array of DocumentChunk — full document v2 content. */
   chunks_v2: string;
 }
 
-/** One sentence-level entry from the parsed chunks_v1 / chunks_v2 JSON. */
+// ---- Parsed chunk types (from JSON.parse of chunks_v1 / chunks_v2) ----
+
 export interface TextChunk {
   id: number;
   position_order: number;
@@ -44,3 +45,20 @@ export interface TextChunk {
   type: 'text';
   text: string;
 }
+
+export interface TableChunkCell {
+  cell_id: number;
+  text: string;
+  row: number;
+  col: number;
+}
+
+export interface TableChunk {
+  position_order: number;
+  title: string;
+  type: 'table';
+  /** Each element is one table row, containing its cells. */
+  rows: TableChunkCell[][];
+}
+
+export type DocumentChunk = TextChunk | TableChunk;

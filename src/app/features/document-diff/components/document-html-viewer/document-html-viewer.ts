@@ -69,6 +69,7 @@ export class DocumentHtmlViewer {
     diffId: string,
   ): void {
     const diff = diffs.find((d) => d.id === diffId);
+    console.log(diffId)
     if (!diff) return;
 
     const target = side === 'left' ? diff.left : diff.right;

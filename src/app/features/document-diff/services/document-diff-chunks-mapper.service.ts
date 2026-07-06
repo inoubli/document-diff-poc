@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import {
   ChunkDiffType,
+  DocumentChunk,
   DocumentDiffChunksResponse,
   TableCellDiff,
+  TableChunk,
   TextChunk,
   TextDiffChunk,
 } from '../models/document-diff-chunks.model';
@@ -17,11 +19,11 @@ const TYPE_MAP: Record<ChunkDiffType, DiffStatus> = {
 @Injectable({ providedIn: 'root' })
 export class DocumentDiffChunksMapperService {
   map(chunks: DocumentDiffChunksResponse): DocumentDiffResponse {
-    const textChunksV1 = this.parseJson<TextChunk[]>(chunks.chunks_v1);
-    const textChunksV2 = this.parseJson<TextChunk[]>(chunks.chunks_v2);
+    const chunksV1 = this.parseJson<DocumentChunk[]>(chunks.chunks_v1);
+    const chunksV2 = this.parseJson<DocumentChunk[]>(chunks.chunks_v2);
 
-    const leftHtml = this.buildTextHtml(textChunksV1);
-    const rightHtml = this.buildTextHtml(textChunksV2);
+    const leftHtml = this.buildHtml(chunksV1);
+    const rightHtml = this.buildHtml(chunksV2);
 
     const textDiffs = this.mapTextDiffs(chunks.text_result);
     const tableDiffs = this.mapTableDiffs(chunks.table_result);
@@ -29,13 +31,39 @@ export class DocumentDiffChunksMapperService {
     return { leftHtml, rightHtml, diffs: [...textDiffs, ...tableDiffs] };
   }
 
-  private buildTextHtml(chunks: TextChunk[]): string {
+  /**
+   * Builds the full document HTML by processing chunks in position_order.
+   * Consecutive text chunks are grouped into paragraphs; table chunks are
+   * rendered as <table> elements.
+   */
+  private buildHtml(chunks: DocumentChunk[]): string {
     const sorted = [...chunks].sort((a, b) => a.position_order - b.position_order);
+    const parts: string[] = [];
+    const pendingText: TextChunk[] = [];
 
-    // Group sentences by paragraph_id, preserving paragraph order of first occurrence.
+    for (const chunk of sorted) {
+      if (chunk.type === 'text') {
+        pendingText.push(chunk);
+      } else if (chunk.type === 'table') {
+        if (pendingText.length > 0) {
+          parts.push(this.buildTextHtml(pendingText.splice(0)));
+        }
+        parts.push(this.buildTableHtml(chunk));
+      }
+    }
+
+    if (pendingText.length > 0) {
+      parts.push(this.buildTextHtml(pendingText));
+    }
+
+    return parts.join('');
+  }
+
+  private buildTextHtml(chunks: TextChunk[]): string {
     const order: number[] = [];
     const byParagraph = new Map<number, TextChunk[]>();
-    for (const chunk of sorted) {
+
+    for (const chunk of chunks) {
       if (!byParagraph.has(chunk.paragraph_id)) {
         byParagraph.set(chunk.paragraph_id, []);
         order.push(chunk.paragraph_id);
@@ -59,6 +87,22 @@ export class DocumentDiffChunksMapperService {
         return `<p data-node-id="p-${paragraphId}">${sentenceHtml}</p>`;
       })
       .join('');
+  }
+
+  private buildTableHtml(chunk: TableChunk): string {
+    let html = `<table data-table-id="${chunk.title}"><tbody>`;
+
+    for (const rowCells of chunk.rows) {
+      const rowIndex = rowCells[0]?.row ?? 0;
+      html += `<tr data-row-id="${chunk.title}-r${rowIndex}">`;
+      for (const cell of rowCells) {
+        html += `<td data-cell-id="${chunk.title}-r${cell.row}-c${cell.col}">${cell.text}</td>`;
+      }
+      html += '</tr>';
+    }
+
+    html += '</tbody></table>';
+    return html;
   }
 
   private mapTextDiffs(textResult: ReadonlyArray<TextDiffChunk>): DiffItem[] {
