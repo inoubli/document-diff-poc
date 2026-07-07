@@ -1,9 +1,6 @@
-:host {
-  display: block;
-}
-
 mat-toolbar {
   gap: 12px;
+  height: 168px;
 }
 
 .filters-bar {
@@ -21,7 +18,10 @@ mat-toolbar {
 
 .content-area {
   display: grid;
-  grid-template-columns: 1fr 1fr 320px;
+  grid-template-columns: 
+    calc((100vw - 320px) / 2)
+    calc((100vw - 320px) / 2)
+    320px;
   align-items: start;
 }
 
@@ -30,14 +30,10 @@ mat-toolbar {
   display: flex;
   flex-direction: column;
   border-right: 1px solid var(--mat-sys-outline-variant);
-  height: 700px;
+  max-height: 700px;
   &:last-child {
     border-right: none;
   }
-}
-
-.viewer-panel {
-  height: 700px;
 }
 
 .panel-header {
