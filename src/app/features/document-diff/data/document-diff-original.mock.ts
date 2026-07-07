@@ -2,7 +2,7 @@
 // {
 //   "text_result": [
 //     {
-//       "type": "modification",
+//       "type": "modification", // Renamed BE 'modification_weak' => 'modification'
 //       "v1_page": null,
 //       "v1": "L'Impact de l'Intelligence Artificielle sur l'Avenir du Travail (Texte Original)",
 //       "v2_page": null,
@@ -47,15 +47,15 @@
 // },
 //     "table_result": [
 //         {
-//             "row 0": {
-//             "Localisation in first doc": "First table",
-//             "Localisation in second doc": "First table",
+//             "row 0": {   // Renamed BE 'row 0'
+//             "Localisation in first doc": "First table",  // Renamed BE 'Localisation in first doc'
+//             "Localisation in second doc": "First table", // Renamed BE 'Localisation in second doc'
 //             "Error": "Different values",
-//             "Cell id": "0",
+//             "Cell id": "0",  // Renamed BE 'Cell id'
 //             "Line": "0",
 //             "Column": "0",
-//             "Value first doc": "TEST",
-//             "Value second doc": "➜ TABLEAU N°72 : VALEUR EXPOSÉE AU RISQUE DE CONTREPARTIE BILATÉRAL EN APPROCHE IRB (EU CCR4)"
+//             "Value first doc": "TEST",   // Renamed BE 'Value first doc'
+//             "Value second doc": "➜ TABLEAU N°72 : VALEUR EXPOSÉE AU RISQUE DE CONTREPARTIE BILATÉRAL EN APPROCHE IRB (EU CCR4)" // Renamed BE 'Valie second doc'
 //             },
 //             "row 1": {
 //             "Localisation in first doc": "First table",

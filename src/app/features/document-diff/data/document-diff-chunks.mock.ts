@@ -1,7 +1,7 @@
 export const MOCK_DOCUMENT_DIFF_CHUNKS = {
   text_result: [
     {
-      type: 'modification',
+      type: 'modification', // Renamed BE 'modification_weak' => 'modification'
       v1_page: null,
       v1: "L'Impact de l'Intelligence Artificielle sur l'Avenir du Travail (Texte Original)",
       v2_page: null,
@@ -46,15 +46,15 @@ export const MOCK_DOCUMENT_DIFF_CHUNKS = {
 
   table_result: [
     {
-      row_0: {
-        locationFirstDoc: 'First table',
-        locationSecondDoc: 'First table',
+      row_0: { // Renamed BE 'row 0'
+        locationFirstDoc: 'First table',  // Renamed BE 'Localisation in first doc'
+        locationSecondDoc: 'First table', // Renamed BE 'Localisation in second doc'
         Error: 'Different values',
-        cellId: '0',
+        cellId: '0', // Renamed BE 'Cell id'
         Line: '0',
         Column: '0',
-        valueFirstDoc: 'TEST',
-        valueSecondDoc:
+        valueFirstDoc: 'TEST', // Renamed BE 'Value first doc'
+        valueSecondDoc: // Renamed BE 'Valie second doc'
           '➜ TABLEAU N°72 : VALEUR EXPOSÉE AU RISQUE DE CONTREPARTIE BILATÉRAL EN APPROCHE IRB (EU CCR4)',
       },
       row_1: {
